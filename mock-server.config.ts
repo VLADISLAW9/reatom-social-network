@@ -1,39 +1,58 @@
 import type { FlatMockServerConfig } from 'mock-config-server';
-import { POSTS, USERS } from './mock/db';
+
+import { USERS } from './mock/db';
 
 export default [
   {
     baseUrl: '/api',
     interceptors: {
-      request: async ({ setDelay }) => await setDelay(1000)
+      request: async ({ setDelay }) => {
+        await setDelay(1000);
+      }
     }
   },
   {
     configs: [
       {
         path: '/login',
-        method: 'get',
+        method: 'post',
         routes: [
           {
             data: [],
             interceptors: {
-              response: (_) => {
-                return {
-                  profile: null
-                };
+              response: (_, { request, setStatusCode, setCookie }) => {
+                const login = request.body.login;
+
+                const user = USERS.find((user) => user.username === login);
+
+                console.log(user);
+
+                if (!user) return setStatusCode(401);
+
+                setCookie('login', login);
+
+                return user;
               }
             }
           }
         ]
       },
       {
-        path: '/posts',
+        path: '/profile',
         method: 'get',
         routes: [
           {
             data: [],
             interceptors: {
-              response: (_) => USERS
+              response: (_, { request, setStatusCode }) => {
+                const login = request.cookies.login;
+
+                const user = USERS.find((user) => user.username === login);
+
+                if (!user) return setStatusCode(401);
+
+                return user;
+              }
             }
           }
         ]

@@ -10,6 +10,7 @@ export const HomePage = reatomComponent(() => {
 
   if (homeRoute.exact() && !!posts)
     return (
+      
       <div>
         {posts.map((post) => (
           <div>{post.title}</div>
