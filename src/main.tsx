@@ -4,8 +4,9 @@ import { App } from './App.tsx';
 import { profile } from './model.ts';
 import { router } from './router.ts';
 
-import './index.css';
 import fetches from '@siberiacancode/fetches';
+
+import './index.css';
 
 const init = async () => {
   try {
