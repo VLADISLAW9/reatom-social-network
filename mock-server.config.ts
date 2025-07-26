@@ -1,6 +1,6 @@
 import type { FlatMockServerConfig } from 'mock-config-server';
 
-import { USERS } from './mock/db';
+import { POSTS, USERS } from './mock/db';
 
 export default [
   {
@@ -22,10 +22,7 @@ export default [
             interceptors: {
               response: (_, { request, setStatusCode, setCookie }) => {
                 const login = request.body.login;
-
                 const user = USERS.find((user) => user.username === login);
-
-                console.log(user);
 
                 if (!user) return setStatusCode(401);
 
@@ -33,6 +30,18 @@ export default [
 
                 return user;
               }
+            }
+          }
+        ]
+      },
+      {
+        path: '/logout',
+        method: 'post',
+        routes: [
+          {
+            data: undefined,
+            interceptors: {
+              response: (_, { clearCookie }) => clearCookie('login')
             }
           }
         ]
@@ -46,12 +55,28 @@ export default [
             interceptors: {
               response: (_, { request, setStatusCode }) => {
                 const login = request.cookies.login;
-
                 const user = USERS.find((user) => user.username === login);
 
                 if (!user) return setStatusCode(401);
 
                 return user;
+              }
+            }
+          }
+        ]
+      },
+      {
+        path: '/posts',
+        method: 'get',
+        routes: [
+          {
+            data: [],
+            interceptors: {
+              response: () => {
+                return {
+                  posts: POSTS,
+                  hasMore: true
+                };
               }
             }
           }

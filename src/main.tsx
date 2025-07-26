@@ -13,9 +13,7 @@ const init = async () => {
     const profileResponse = await fetches.get<User>('/api/profile');
     profile.set(profileResponse.data);
 
-    if (router.home.exact()) return;
-
-    router.home.go();
+    if (!router.home.exact()) router.home.go();
   } catch {
     router.login.go();
   }
