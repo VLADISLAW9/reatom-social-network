@@ -17,10 +17,7 @@ export const App = reatomComponent(() => (
   <>
     {router.home.exact() && (
       <Suspense fallback={<div>Loading...</div>}>
-        <AuthLayout>
-          {router.home.loader.ready() && <HomePage />}
-          {!router.home.loader.ready() && <div>Loading...</div>}
-        </AuthLayout>
+        <AuthLayout>{router.home.loader.ready() ? <HomePage /> : <div>Loading...</div>}</AuthLayout>
       </Suspense>
     )}
 

@@ -47,6 +47,34 @@ export default [
         ]
       },
       {
+        path: '/post',
+        method: 'post',
+        routes: [
+          {
+            data: [],
+            interceptors: {
+              response: (_, { request, setStatusCode }) => {
+                const login = request.cookies.login;
+                const creator = USERS.find((user) => user.username === login);
+
+                if (!creator) return setStatusCode(500);
+
+                const newPost = {
+                  title: request.body.title,
+                  description: request.body.description,
+                  id: POSTS.length + 1,
+                  creator
+                };
+
+                POSTS.push(newPost);
+
+                return newPost;
+              }
+            }
+          }
+        ]
+      },
+      {
         path: '/profile',
         method: 'get',
         routes: [
