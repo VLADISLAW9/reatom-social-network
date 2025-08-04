@@ -7,6 +7,5 @@ interface Post {
   creator: User;
   description?: string;
   id: number;
-  images?: string[];
   title: string;
 }

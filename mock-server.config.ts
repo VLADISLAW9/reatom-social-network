@@ -47,6 +47,43 @@ export default [
         ]
       },
       {
+        path: '/post/:id',
+        method: 'delete',
+        routes: [
+          {
+            data: undefined,
+            interceptors: {
+              response: (_, { request }) => {
+                const postIndex = POSTS.findIndex((post) => post.id === Number(request.params.id));
+
+                POSTS.splice(postIndex, 1);
+              }
+            }
+          }
+        ]
+      },
+      {
+        path: '/post/:id',
+        method: 'patch',
+        routes: [
+          {
+            data: [],
+            interceptors: {
+              response: (_, { request }) => {
+                const updatedPost = {
+                  ...POSTS.find((post) => post.id === +request.params.id),
+                  ...request.body
+                };
+
+                POSTS.map((post) => (post.id === updatedPost.id ? updatedPost : post));
+
+                return updatedPost;
+              }
+            }
+          }
+        ]
+      },
+      {
         path: '/post',
         method: 'post',
         routes: [
@@ -66,7 +103,7 @@ export default [
                   creator
                 };
 
-                POSTS.push(newPost);
+                POSTS.unshift(newPost);
 
                 return newPost;
               }
