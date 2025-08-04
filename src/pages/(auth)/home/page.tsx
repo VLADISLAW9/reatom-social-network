@@ -1,10 +1,11 @@
 import { bindField, reatomComponent } from '@reatom/react';
 
-import { Button } from '../../../components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card';
-import { Input } from '../../../components/ui/input';
-import { Textarea } from '../../../components/ui/textarea';
-import { homeRoute } from '../../../router';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { homeRoute } from '@/router';
+
 import { PostCard } from './-components';
 import { isLoading, postForm } from './model';
 

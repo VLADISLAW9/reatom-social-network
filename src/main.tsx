@@ -1,10 +1,9 @@
+import fetches from '@siberiacancode/fetches';
 import { createRoot } from 'react-dom/client';
 
 import { App } from './App.tsx';
 import { profile } from './model.ts';
 import { router } from './router.ts';
-
-import fetches from '@siberiacancode/fetches';
 
 import './index.css';
 

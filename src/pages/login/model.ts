@@ -2,8 +2,8 @@ import { action, computed, reatomForm, withAsync } from '@reatom/core';
 import fetches from '@siberiacancode/fetches';
 import { toast } from 'sonner';
 
-import { profile } from '../../model';
-import { router } from '../../router';
+import { profile } from '@/model';
+import { router } from '@/router';
 
 export const loginAction = action(
   async (body) => await fetches.post<User>('/api/login', body)

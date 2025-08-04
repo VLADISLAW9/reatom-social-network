@@ -1,8 +1,8 @@
 import { bindField, reatomComponent } from '@reatom/react';
 
-import { IconDots } from '../../../../components/icons';
-import { Avatar, AvatarFallback } from '../../../../components/ui/avatar';
-import { Button } from '../../../../components/ui/button';
+import { IconDots } from '@/components/icons';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -10,11 +10,12 @@ import {
   CardFooter,
   CardHeader,
   CardTitle
-} from '../../../../components/ui/card';
-import { Input } from '../../../../components/ui/input';
-import { Popover, PopoverContent, PopoverTrigger } from '../../../../components/ui/popover';
-import { profile } from '../../../../model';
-import { useDisclosure } from '../../../../utils/hooks';
+} from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { profile } from '@/model';
+import { useDisclosure } from '@/utils/hooks';
+
 import { editablePostId, editPostForm, onPostDelete } from '../model';
 
 export const PostCard = reatomComponent((post: Post) => {
