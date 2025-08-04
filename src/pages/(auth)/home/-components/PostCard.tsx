@@ -1,6 +1,6 @@
 import { bindField, reatomComponent } from '@reatom/react';
 
-import { IconDots } from '@/components/icons';
+import { IconDots, IconSpinner } from '@/components/icons';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
@@ -66,6 +66,7 @@ export const PostCard = reatomComponent((post: Post) => {
                   variant='destructive'
                   onClick={() => onPostDelete(post.id)}
                 >
+                  {!!onPostDelete.pending() && <IconSpinner />}
                   Remove
                 </Button>
               </PopoverContent>
@@ -87,7 +88,10 @@ export const PostCard = reatomComponent((post: Post) => {
           )}
           {isEditablePostCard && (
             <div className='flex gap-2'>
-              <Button type='submit'>Save</Button>
+              <Button disabled={!!editPostForm.submit.pending()} type='submit'>
+                {!!editPostForm.submit.pending() && <IconSpinner />}
+                Save
+              </Button>
               <Button variant='outline' onClick={() => editablePostId.set(null)}>
                 Cancel
               </Button>

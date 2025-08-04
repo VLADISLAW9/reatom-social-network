@@ -1,5 +1,6 @@
 import { bindField, reatomComponent } from '@reatom/react';
 
+import { IconSpinner } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -42,7 +43,8 @@ export const LoginPage = reatomComponent(() => {
               </div>
             </CardContent>
             <CardFooter>
-              <Button className='w-40' disabled={isLoading()} type='submit'>
+              <Button className='w-40 ' disabled={isLoading()} type='submit'>
+                {isLoading() && <IconSpinner />}
                 Login
               </Button>
             </CardFooter>

@@ -68,7 +68,3 @@ export const onPostDelete = action(async (postId: number) => {
 
   toast.success('Post was deleted');
 }).extend(withAsync());
-
-export const isLoading = computed(
-  () => !!postForm.submit.pending() || !!onPostDelete.pending() || !!editPostForm.submit.pending()
-);

@@ -15,8 +15,7 @@ export const homeRoute = reatomRoute({
     const postsResponse = await fetches.get<{ posts: Post[]; hasMore: boolean }>('/api/posts');
 
     return {
-      posts: postsResponse.data.posts,
-      hasMore: postsResponse.data.hasMore
+      posts: postsResponse.data.posts
     };
   }
 });

@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 
 import { reatomComponent } from '@reatom/react';
 
-import { IconAtom } from '../../components/icons';
+import { IconAtom, IconSpinner } from '../../components/icons';
 import { Avatar, AvatarFallback } from '../../components/ui/avatar';
 import { Button } from '../../components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '../../components/ui/popover';
@@ -34,6 +34,7 @@ export const AuthLayout = reatomComponent(({ children }: AuthLayoutProps) => (
         </PopoverTrigger>
         <PopoverContent align='end' className='p-3 w-fit'>
           <Button disabled={isLoading()} size='sm' variant='destructive' onClick={onLogout}>
+            {isLoading() && <IconSpinner />}
             Log Out
           </Button>
         </PopoverContent>
