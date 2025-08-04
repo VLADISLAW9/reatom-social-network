@@ -1,9 +1,10 @@
 import { useEffect, useRef } from 'react';
 
+import type { HookTarget } from '../../lib';
 import type { StateRef } from '../useRefState/useRefState';
 
+import { getElement, isTarget } from '../../lib';
 import { useRefState } from '../useRefState/useRefState';
-import { getElement, isTarget, type HookTarget } from '../../lib';
 
 export interface UseClickOutside {
   (target: HookTarget, callback: (event: Event) => void): void;
