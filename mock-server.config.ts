@@ -18,7 +18,7 @@ export default [
         method: 'post',
         routes: [
           {
-            data: [],
+            data: undefined,
             interceptors: {
               response: (_, { request, setStatusCode, setCookie }) => {
                 const login = request.body.login;
@@ -47,7 +47,7 @@ export default [
         ]
       },
       {
-        path: '/post/:id',
+        path: '/posts/:id',
         method: 'delete',
         routes: [
           {
@@ -63,11 +63,11 @@ export default [
         ]
       },
       {
-        path: '/post/:id',
+        path: '/posts/:id',
         method: 'patch',
         routes: [
           {
-            data: [],
+            data: undefined,
             interceptors: {
               response: (_, { request }) => {
                 const updatedPost = {
@@ -84,11 +84,11 @@ export default [
         ]
       },
       {
-        path: '/post',
+        path: '/posts',
         method: 'post',
         routes: [
           {
-            data: [],
+            data: undefined,
             interceptors: {
               response: (_, { request, setStatusCode }) => {
                 const login = request.cookies.login;
@@ -116,7 +116,7 @@ export default [
         method: 'get',
         routes: [
           {
-            data: [],
+            data: undefined,
             interceptors: {
               response: (_, { request, setStatusCode }) => {
                 const login = request.cookies.login;
@@ -135,14 +135,9 @@ export default [
         method: 'get',
         routes: [
           {
-            data: [],
+            data: undefined,
             interceptors: {
-              response: () => {
-                return {
-                  posts: POSTS,
-                  hasMore: true
-                };
-              }
+              response: () => POSTS
             }
           }
         ]

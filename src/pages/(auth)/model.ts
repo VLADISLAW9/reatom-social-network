@@ -1,20 +1,13 @@
 import { action, computed, withAsync } from '@reatom/core';
-import fetches from '@siberiacancode/fetches';
 
 import { profile } from '@/model';
 import { router } from '@/router';
+import { logout } from '@/utils/api/requests';
 
-const logoutAction = action(
-  async () =>
-    await fetches.post('/api/logout', undefined, {
-      parse: 'raw'
-    })
-).extend(withAsync());
-
-export const onLogout = async () => {
-  await logoutAction();
+export const onLogout = action(async () => {
+  await logout({ config: { parse: 'raw' } });
   profile.set(undefined);
   router.login.go();
-};
+}).extend(withAsync());
 
-export const isLoading = computed(() => !!logoutAction.pending());
+export const isLoading = computed(() => !!onLogout.pending());

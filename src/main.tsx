@@ -1,4 +1,3 @@
-import fetches from '@siberiacancode/fetches';
 import { createRoot } from 'react-dom/client';
 
 import { App } from './App.tsx';
@@ -6,10 +5,12 @@ import { profile } from './model.ts';
 import { router } from './router.ts';
 
 import './index.css';
+import { getProfile } from './utils/api/requests/profile/get.ts';
 
 const init = async () => {
   try {
-    const profileResponse = await fetches.get<User>('/api/profile');
+    const profileResponse = await getProfile();
+
     profile.set(profileResponse.data);
 
     if (!router.home.exact()) router.home.go();
